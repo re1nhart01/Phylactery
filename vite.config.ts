@@ -9,6 +9,7 @@ export default defineConfig(async () => ({
       '#': path.resolve(__dirname, './src'),
       '#assets': path.resolve(__dirname, './src/assets'),
       '#components': path.resolve(__dirname, './src/components'),
+      '#core': path.resolve(__dirname, './src/core'),
       '#hooks': path.resolve(__dirname, './src/hooks'),
       '#modules': path.resolve(__dirname, './src/modules'),
       '#services': path.resolve(__dirname, './src/services'),

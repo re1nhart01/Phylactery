@@ -28,7 +28,8 @@
     "react-toastify": "^9.1.3",
     "recharts": "^2.7.2",
     "styled-components": "^6.0.2",
-    "stylelint-config-styled-components": "^0.1.1"
+    "stylelint-config-styled-components": "^0.1.1",
+    "tauri-plugin-sql-api": "https://github.com/tauri-apps/tauri-plugin-sql#v1"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

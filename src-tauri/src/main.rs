@@ -22,6 +22,7 @@ fn greet(name: &str) -> String {
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_sql::Builder::default().build())
         .invoke_handler(tauri::generate_handler![greet, bobus, bruh, retrieve_disks, retrieve_files_from_folder, open_file_in_apps])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

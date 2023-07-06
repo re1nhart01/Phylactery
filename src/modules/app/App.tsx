@@ -1,5 +1,5 @@
 import { theme } from '#/theme/theme';
-import { router as rootRouter } from '#modules/navigation/routers/root';
+import { router as rootRouter } from '#core/navigation/routers/root';
 import '#styles/App.css';
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
