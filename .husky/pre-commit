@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+
+LRED='\033[1;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+WHITE='\[\033[0;37m\]'
+
+
+run_linter () {
+  if git diff --cached --quiet -- "src/"
+  then
+    echo "${GREEN}Linting all repo"
+    yarn lint
+  else
+    echo -e "${GREEN}Linting the src folder ==> ${NC}${WHITE}Ext: .ts, .tsx${NC}"
+    npx lint-staged     # or npx eslint *.ts, or whatever your lint command is!
+    if [[ $? -ne 0 ]]
+    then
+      exit 1
+    fi
+  fi
+
+}
+
+exec 1>&2
+
+check_branch () {
+  if test "$(git branch --show-current)" == "master" || test "$(git branch --show-current)" == "main" || test "$(git branch --show-current)" == "develop"
+  then
+    printf "You are on ${LRED}$(git branch --show-current)${NC}.\n"
+  fi
+}
+
+exec_rust_linter() {
+  printf "Ready for ${LRED} linting \n"
+  cd ./src-tauri/ && cargo clippy --fix --allow-dirty --allow-staged
+  printf "End linting \n"
+}
+
+### RUN THROUGH CHECKS AND STOP IF THERE IS A PROBLEM
+run_linter
+check_branch
+exec_rust_linter
+
+npm test
